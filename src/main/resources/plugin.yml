@@ -1,0 +1,7 @@
+name: FolfScoreboard
+version: 1.1.0
+author: Checkium
+main: me.checkium.folfscoreboard.FolfScoreboard
+softdepend: [MVdWPlaceholderAPI, Factions, PlaceholderAPI]
+commands:
+  score:

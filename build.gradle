@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+}
+
+group 'SpigotPlugins'
+version '0.1.0'
+
+sourceCompatibility = 1.8
+
+
+repositories {
+    mavenCentral()
+    maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    maven { url = 'http://repo.mvdw-software.be/content/groups/public/'}
+    maven { url = 'http://repo.extendedclip.com/content/repositories/placeholderapi/'}
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compileOnly 'me.clip:placeholderapi:2.9.2'
+    compileOnly 'be.maximvdw:MVdWPlaceholderAPI:2.5.1-SNAPSHOT'
+    compileOnly files ("C:\\Users\\Checkium\\Downloads\\MambaFactions.Completo.1.19\\MambaFactions.jar")
+    compileOnly files ("C:\\Users\\Checkium\\Downloads\\MambaFactions.Completo.1.19\\MambaMassiveCore.jar")
+    compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
+}
