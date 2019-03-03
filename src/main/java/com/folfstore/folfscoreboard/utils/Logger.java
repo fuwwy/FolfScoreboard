@@ -1,4 +1,4 @@
-package me.checkium.folfscoreboard.utils;
+package com.folfstore.folfscoreboard.utils;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

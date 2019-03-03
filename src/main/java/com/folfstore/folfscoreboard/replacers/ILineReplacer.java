@@ -1,6 +1,6 @@
-package me.checkium.folfscoreboard.replacers;
+package com.folfstore.folfscoreboard.replacers;
 
-import me.checkium.folfscoreboard.ScoreboardLine;
+import com.folfstore.folfscoreboard.ScoreboardLine;
 import org.bukkit.entity.Player;
 
 public interface ILineReplacer {

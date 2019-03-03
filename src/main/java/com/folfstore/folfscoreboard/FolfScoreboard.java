@@ -1,11 +1,11 @@
-package me.checkium.folfscoreboard;
+package com.folfstore.folfscoreboard;
 
-import me.checkium.folfscoreboard.commands.Score;
-import me.checkium.folfscoreboard.config.ScoreboardConfig;
-import me.checkium.folfscoreboard.hooks.impl.FactionsHook;
-import me.checkium.folfscoreboard.replacers.impl.ChatColorReplacer;
-import me.checkium.folfscoreboard.replacers.impl.PlaceholderAPIReplacer;
-import me.checkium.folfscoreboard.utils.Logger;
+import com.folfstore.folfscoreboard.config.ScoreboardConfig;
+import com.folfstore.folfscoreboard.hooks.impl.FactionsHook;
+import com.folfstore.folfscoreboard.commands.Score;
+import com.folfstore.folfscoreboard.replacers.impl.ChatColorReplacer;
+import com.folfstore.folfscoreboard.replacers.impl.PlaceholderAPIReplacer;
+import com.folfstore.folfscoreboard.utils.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 

@@ -1,7 +1,7 @@
-package me.checkium.folfscoreboard;
+package com.folfstore.folfscoreboard;
 
-import me.checkium.folfscoreboard.updaters.TeamUpdater;
-import me.checkium.folfscoreboard.utils.Logger;
+import com.folfstore.folfscoreboard.updaters.TeamUpdater;
+import com.folfstore.folfscoreboard.utils.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

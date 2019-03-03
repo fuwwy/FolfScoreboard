@@ -1,6 +1,6 @@
-package me.checkium.folfscoreboard.commands;
+package com.folfstore.folfscoreboard.commands;
 
-import me.checkium.folfscoreboard.FolfScoreboard;
+import com.folfstore.folfscoreboard.FolfScoreboard;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

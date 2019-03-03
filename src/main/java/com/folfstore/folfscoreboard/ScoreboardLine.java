@@ -1,4 +1,4 @@
-package me.checkium.folfscoreboard;
+package com.folfstore.folfscoreboard;
 
 import com.google.common.base.Splitter;
 import org.bukkit.ChatColor;

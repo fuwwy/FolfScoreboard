@@ -1,11 +1,11 @@
-package me.checkium.folfscoreboard.hooks.impl;
+package com.folfstore.folfscoreboard.hooks.impl;
 
+import com.folfstore.folfscoreboard.hooks.ScoreboardHook;
 import com.massivecraft.factions.entity.FactionColl;
 import com.massivecraft.factions.entity.MPlayer;
-import me.checkium.folfscoreboard.FolfScoreboard;
-import me.checkium.folfscoreboard.ScoreboardLine;
-import me.checkium.folfscoreboard.ScoreboardLinePool;
-import me.checkium.folfscoreboard.hooks.ScoreboardHook;
+import com.folfstore.folfscoreboard.FolfScoreboard;
+import com.folfstore.folfscoreboard.ScoreboardLine;
+import com.folfstore.folfscoreboard.ScoreboardLinePool;
 import org.bukkit.entity.Player;
 
 

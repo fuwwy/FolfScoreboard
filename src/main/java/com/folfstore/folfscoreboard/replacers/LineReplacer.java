@@ -1,4 +1,4 @@
-package me.checkium.folfscoreboard.replacers;
+package com.folfstore.folfscoreboard.replacers;
 
 import org.bukkit.Bukkit;
 

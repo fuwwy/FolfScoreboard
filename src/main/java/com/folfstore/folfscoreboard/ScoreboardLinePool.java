@@ -1,4 +1,4 @@
-package me.checkium.folfscoreboard;
+package com.folfstore.folfscoreboard;
 
 /**
  *  Sorcery for the line pool

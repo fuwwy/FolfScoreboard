@@ -1,21 +1,12 @@
-package me.checkium.folfscoreboard.config;
+package com.folfstore.folfscoreboard.config;
 
-import me.checkium.folfscoreboard.FolfScoreboard;
-import me.checkium.folfscoreboard.ScoreboardLine;
-import me.checkium.folfscoreboard.ScoreboardLinePool;
-import me.checkium.folfscoreboard.utils.Logger;
-import org.bukkit.Bukkit;
+import com.folfstore.folfscoreboard.FolfScoreboard;
+import com.folfstore.folfscoreboard.ScoreboardLine;
+import com.folfstore.folfscoreboard.ScoreboardLinePool;
+import com.folfstore.folfscoreboard.utils.Logger;
 import org.bukkit.ChatColor;
-import org.bukkit.OfflinePlayer;
-import org.bukkit.entity.Player;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 /**
  * Configuration file

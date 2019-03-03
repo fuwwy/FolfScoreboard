@@ -1,6 +1,6 @@
-package me.checkium.folfscoreboard.hooks;
+package com.folfstore.folfscoreboard.hooks;
 
-import me.checkium.folfscoreboard.ScoreboardLinePool;
+import com.folfstore.folfscoreboard.ScoreboardLinePool;
 import org.bukkit.entity.Player;
 
 public interface IScoreboardHook {

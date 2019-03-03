@@ -1,19 +1,16 @@
-package me.checkium.folfscoreboard.updaters;
+package com.folfstore.folfscoreboard.updaters;
 
-import me.checkium.folfscoreboard.FolfScoreboard;
-import me.checkium.folfscoreboard.ScoreboardLine;
-import me.checkium.folfscoreboard.ScoreboardLinePool;
-import me.checkium.folfscoreboard.hooks.HookManager;
-import me.checkium.folfscoreboard.hooks.ScoreboardHook;
-import me.checkium.folfscoreboard.replacers.LineReplacer;
-import me.checkium.folfscoreboard.replacers.LineReplacerManager;
+import com.folfstore.folfscoreboard.FolfScoreboard;
+import com.folfstore.folfscoreboard.ScoreboardLinePool;
+import com.folfstore.folfscoreboard.hooks.HookManager;
+import com.folfstore.folfscoreboard.hooks.ScoreboardHook;
+import com.folfstore.folfscoreboard.replacers.LineReplacer;
+import com.folfstore.folfscoreboard.replacers.LineReplacerManager;
+import com.folfstore.folfscoreboard.ScoreboardLine;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scheduler.BukkitScheduler;
-import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;

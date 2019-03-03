@@ -1,6 +1,4 @@
-package me.checkium.folfscoreboard.replacers;
-
-import me.checkium.folfscoreboard.hooks.ScoreboardHook;
+package com.folfstore.folfscoreboard.replacers;
 
 import java.util.ArrayList;
 import java.util.List;

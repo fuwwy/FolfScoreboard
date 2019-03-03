@@ -1,7 +1,7 @@
-package me.checkium.folfscoreboard.replacers.impl;
+package com.folfstore.folfscoreboard.replacers.impl;
 
-import me.checkium.folfscoreboard.ScoreboardLine;
-import me.checkium.folfscoreboard.replacers.LineReplacer;
+import com.folfstore.folfscoreboard.ScoreboardLine;
+import com.folfstore.folfscoreboard.replacers.LineReplacer;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;

@@ -1,4 +1,4 @@
-package me.checkium.folfscoreboard.hooks;
+package com.folfstore.folfscoreboard.hooks;
 
 import org.bukkit.Bukkit;
 
