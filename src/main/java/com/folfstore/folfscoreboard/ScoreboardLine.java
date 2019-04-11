@@ -5,17 +5,11 @@ import org.bukkit.ChatColor;
 
 import java.util.Iterator;
 
-
-/**
- *  Scoreboard line class, splits text between prefix and suffix
- */
 public class ScoreboardLine {
     private String line;
     private String prefix;
     private String suffix;
-    ScoreboardLine nextLine;
-    ScoreboardLine previousLine;
-    int index;
+    private int index;
 
     public ScoreboardLine(String line) {
         setLine(line);
@@ -46,6 +40,10 @@ public class ScoreboardLine {
 
     public int getIndex() {
         return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 
     public ScoreboardLine clone() {

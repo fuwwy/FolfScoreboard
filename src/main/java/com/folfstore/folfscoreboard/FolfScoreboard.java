@@ -1,10 +1,10 @@
 package com.folfstore.folfscoreboard;
 
-import com.folfstore.folfscoreboard.config.ScoreboardConfig;
-import com.folfstore.folfscoreboard.hooks.impl.FactionsHook;
 import com.folfstore.folfscoreboard.commands.Score;
-import com.folfstore.folfscoreboard.replacers.impl.ChatColorReplacer;
-import com.folfstore.folfscoreboard.replacers.impl.PlaceholderAPIReplacer;
+import com.folfstore.folfscoreboard.config.ScoreboardConfig;
+import com.folfstore.folfscoreboard.processors.impl.ChatColorProcessor;
+import com.folfstore.folfscoreboard.processors.impl.FactionsHookProcessor;
+import com.folfstore.folfscoreboard.processors.impl.PlaceholderAPIProcessor;
 import com.folfstore.folfscoreboard.utils.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -18,7 +18,7 @@ public class FolfScoreboard extends JavaPlugin {
     Logger logger = new Logger();
     private static FolfScoreboard plugin;
     ScoreboardConfig scoreboardConfig;
-    ScoreboardRegisterer r;
+    ScoreboardEventListener r;
     @Override
     public void onEnable() {
         plugin = this;
@@ -28,23 +28,16 @@ public class FolfScoreboard extends JavaPlugin {
             logger.info("Encontrado MVdWPlaceholderAPI, hooking...");
            //TODO useMVdW = true;
         }
-        if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
-            logger.info("Encontrado PlaceholderAPI, hooking...");
-            new PlaceholderAPIReplacer();
-        }
-        new ChatColorReplacer();
-
-        if (Bukkit.getPluginManager().isPluginEnabled("Factions")) {
-            logger.info("Encontrado Factions, hooking...");
-            new FactionsHook();
-        }
+        new FactionsHookProcessor();
+        new PlaceholderAPIProcessor();
+        new ChatColorProcessor();
         logger.info("Iniciando o registrador de scoreboards...");
-        r = new ScoreboardRegisterer();
+        r = new ScoreboardEventListener();
         Bukkit.getPluginManager().registerEvents(r, this);
         getCommand("score").setExecutor(new Score());
     }
 
-    public ScoreboardRegisterer getR() {
+    public ScoreboardEventListener getR() {
         return r;
     }
 
