@@ -3,8 +3,6 @@ package com.folfstore.folfscoreboard.utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
-import java.util.logging.Level;
-
 /**
  * Do I really need to document this out?
  */

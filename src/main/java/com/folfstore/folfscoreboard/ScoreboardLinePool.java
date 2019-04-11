@@ -30,11 +30,12 @@ public class ScoreboardLinePool {
         updateIndexes();
   }
 
-  public ScoreboardLinePool clone() {
-      ScoreboardLinePool newLinePool = new ScoreboardLinePool();
-      list.forEach(newLinePool::add);
-      return newLinePool;
-  }
+    @SuppressWarnings("MethodDoesntCallSuperMethod")
+    public ScoreboardLinePool clone() {
+        ScoreboardLinePool newLinePool = new ScoreboardLinePool();
+        list.forEach(newLinePool::add);
+        return newLinePool;
+    }
 
     private void updateIndexes() {
         AtomicInteger listSize = new AtomicInteger(list.size() - 1);

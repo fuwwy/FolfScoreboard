@@ -21,9 +21,7 @@ public class ScoreboardEventListener implements Listener {
         new BukkitRunnable() {
             @Override
             public void run() {
-                onlinePlayersScoreboard.forEach((player, scoreboard) -> {
-                    updater.update(player);
-                });
+                new HashMap<>(onlinePlayersScoreboard).forEach((player, scoreboard) -> updater.update(player));
             }
         }.runTaskTimerAsynchronously(FolfScoreboard.getPlugin(), 0L, (long) (FolfScoreboard.getPlugin().getScoreboardConfig().getUpdateSec() * 20L));
     }
