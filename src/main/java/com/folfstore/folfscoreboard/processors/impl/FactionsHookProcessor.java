@@ -4,6 +4,7 @@ import com.folfstore.folfscoreboard.FolfScoreboard;
 import com.folfstore.folfscoreboard.ScoreboardLine;
 import com.folfstore.folfscoreboard.ScoreboardLinePool;
 import com.folfstore.folfscoreboard.processors.ScoreboardProcessor;
+import com.folfstore.folfscoreboard.processors.ScoreboardProcessorRegisterException;
 import com.massivecraft.factions.entity.FactionColl;
 import com.massivecraft.factions.entity.MPlayer;
 import org.bukkit.entity.Player;
@@ -44,7 +45,7 @@ public class FactionsHookProcessor extends ScoreboardProcessor {
                 FolfScoreboard.getPlugin().getConfig().getStringList("hooks.FactionsHook.hasfaction").forEach(s -> facLines.add(new ScoreboardLine(s)));
             }
         } catch (Exception e) {
-            new RuntimeException("[FolfScoreboard] Exception thrown on attempting to register processor " + getId(), e).printStackTrace();
+            new ScoreboardProcessorRegisterException("[FolfScoreboard] Exception thrown on attempting to register processor " + getId(), e).printStackTrace();
             return false;
         }
         return super.shouldRegister();

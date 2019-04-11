@@ -15,10 +15,11 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class FolfScoreboard extends JavaPlugin {
 
-    Logger logger = new Logger();
+    private Logger logger = new Logger();
     private static FolfScoreboard plugin;
-    ScoreboardConfig scoreboardConfig;
-    ScoreboardEventListener r;
+    private ScoreboardConfig scoreboardConfig;
+    private ScoreboardEventListener r;
+
     @Override
     public void onEnable() {
         plugin = this;

@@ -13,6 +13,7 @@ repositories {
     maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
     maven { url = 'http://repo.mvdw-software.be/content/groups/public/'}
     maven { url = 'http://repo.extendedclip.com/content/repositories/placeholderapi/'}
+    maven { url = 'http://144.172.70.120:8081/repository/folfpack/' }
 }
 
 dependencies {
@@ -24,7 +25,7 @@ dependencies {
 
     compileOnly 'me.clip:placeholderapi:2.9.2'
     compileOnly 'be.maximvdw:MVdWPlaceholderAPI:2.5.1-SNAPSHOT'
-    compileOnly files ("C:\\Users\\Checkium\\Downloads\\MambaFactions.Completo.1.19\\MambaFactions.jar")
-    compileOnly files ("C:\\Users\\Checkium\\Downloads\\MambaFactions.Completo.1.19\\MambaMassiveCore.jar")
+    compileOnly 'dependencies:MambaFactions:2.13.6'
+    compileOnly 'dependencies:MambaMassiveCore:2.13.6'
     compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
 }

@@ -5,11 +5,9 @@ import org.bukkit.Bukkit;
 public abstract class ScoreboardProcessor implements IScoreboardProcessor {
 
     public ScoreboardProcessor() {
-        if (getPlugin() == null || Bukkit.getPluginManager().isPluginEnabled(getPlugin())) {
-            if (shouldRegister()) {
+        if ((getPlugin() == null || Bukkit.getPluginManager().isPluginEnabled(getPlugin())) && shouldRegister()) {
                 ScoreboardProcessorManager.get().getLogger().debug("Registering processor " + getId());
                 ScoreboardProcessorManager.get().getProcessors().add(this);
-            }
         }
     }
 

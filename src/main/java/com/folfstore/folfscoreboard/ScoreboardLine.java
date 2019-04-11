@@ -20,7 +20,7 @@ public class ScoreboardLine {
     }
 
     public ScoreboardLine setLine(String line) {
-        if (line.length() == 0 || line.equals(" ")) {
+        if (0 == line.length() || line.equals(" ")) {
             line = "" + ChatColor.values()[(int) (Math.random() * ChatColor.values().length)];
         }
         this.line = line;
