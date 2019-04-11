@@ -1,5 +1,6 @@
 package com.folfstore.folfscoreboard.updaters;
 
+import com.folfstore.folfscoreboard.ChatColorService;
 import com.folfstore.folfscoreboard.FolfScoreboard;
 import com.folfstore.folfscoreboard.ScoreboardLine;
 import com.folfstore.folfscoreboard.ScoreboardLinePool;
@@ -13,8 +14,7 @@ import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
@@ -27,7 +27,7 @@ import java.util.concurrent.TimeoutException;
  * The line replacing part should be split into a executeProcessor() method, update should only create the teams and send information.
  */
 public class TeamUpdater {
-
+    private HashMap<Player, Integer> highestIndexCache = new HashMap<>();
     public void update(Player p) {
         FolfScoreboard pluginInstance = FolfScoreboard.getPlugin();
         ScoreboardLinePool scoreboardConfiguredLines = pluginInstance.getScoreboardConfig().getLines();
@@ -49,10 +49,17 @@ public class TeamUpdater {
             folfScoreboardObject.setDisplayName(pluginInstance.getScoreboardConfig().getTitle());
         }
 
-        List<ChatColor> colors = Arrays.asList(ChatColor.values());
+        ChatColorService service = new ChatColorService();
+        int maxIndex = scoreboardConfiguredLinesClone.get(0).getIndex();
+        if (highestIndexCache.containsKey(p) && highestIndexCache.get(p) > maxIndex) {
+            for (int i = maxIndex + 1; i <= highestIndexCache.get(p); i++) {
+                playerScoreboard.resetScores(service.get(i) + "" + ChatColor.RESET);
+            }
+        }
+        highestIndexCache.put(p, maxIndex);
         for (ScoreboardLine scoreboardLine : scoreboardConfiguredLinesClone.toArray()) {
             int index = scoreboardLine.getIndex();
-            String teamName = colors.get(index) + "";
+            String teamName = service.get(index) + "" + ChatColor.RESET;
             Team t = playerScoreboard.getTeam(teamName);
             if (t == null) t = playerScoreboard.registerNewTeam(teamName);
             t.addEntry(teamName);

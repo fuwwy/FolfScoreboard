@@ -26,8 +26,22 @@ public class ScoreboardLine {
         this.line = line;
         Iterator<String> it = Splitter.fixedLength(14).split(line).iterator();
         prefix = it.next();
-        suffix = it.hasNext() ? it.next() : null;
+        suffix = it.hasNext() ? makeSuffix(it.next()) : null;
         return this;
+    }
+
+    private String makeSuffix(String suffix) {
+        StringBuilder colors = new StringBuilder();
+        if (prefix.contains(ChatColor.COLOR_CHAR + "")) {
+            char[] charArray = prefix.toCharArray();
+            for (int i = 0; i < charArray.length; i++) {
+                char c = charArray[i];
+                if (c == ChatColor.COLOR_CHAR) {
+                    colors.append(c).append(prefix.charAt(i + 1));
+                }
+            }
+        }
+        return colors + suffix;
     }
 
     public String getPrefix() {
@@ -46,6 +60,7 @@ public class ScoreboardLine {
         this.index = index;
     }
 
+    @SuppressWarnings("MethodDoesntCallSuperMethod")
     public ScoreboardLine clone() {
         return new ScoreboardLine(line);
     }
