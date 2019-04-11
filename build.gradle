@@ -25,6 +25,9 @@ dependencies {
     testCompile "org.powermock:powermock-module-junit4:1.6.4"
 
     compileOnly 'me.clip:placeholderapi:2.9.2'
+    compileOnly('be.maximvdw:MVdWPlaceholderAPI:2.5.1-SNAPSHOT') {
+        exclude group: 'org.spigotmc'
+    }
     compileOnly 'dependencies:MambaFactions:2.13.6'
     compileOnly 'dependencies:MambaMassiveCore:2.13.6'
     compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
