@@ -13,7 +13,6 @@ import java.io.File;
  * This is trash and should probably be changed, maybe when FolfAPI becomes a thing
  */
 public class ScoreboardConfig {
-    private Logger logger = new Logger("Config");
     private ScoreboardLinePool lines;
     private String title;
     private boolean debug;
@@ -21,6 +20,7 @@ public class ScoreboardConfig {
 
 
     public ScoreboardConfig() {
+        Logger logger = new Logger("Config");
         logger.info("Carregando configuração...");
         if (!new File(FolfScoreboard.getPlugin().getDataFolder(), "config.yml").exists()) {
             logger.info("Configuração não encontrada, criando novo arquivo...");

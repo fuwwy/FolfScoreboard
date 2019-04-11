@@ -4,6 +4,7 @@ import com.folfstore.folfscoreboard.commands.Score;
 import com.folfstore.folfscoreboard.config.ScoreboardConfig;
 import com.folfstore.folfscoreboard.processors.impl.ChatColorProcessor;
 import com.folfstore.folfscoreboard.processors.impl.FactionsHookProcessor;
+import com.folfstore.folfscoreboard.processors.impl.MaximvdwPlaceholderAPIProcessor;
 import com.folfstore.folfscoreboard.processors.impl.PlaceholderAPIProcessor;
 import com.folfstore.folfscoreboard.utils.Logger;
 import org.bukkit.Bukkit;
@@ -25,12 +26,9 @@ public class FolfScoreboard extends JavaPlugin {
         plugin = this;
         logger.info("Ativando FolfScoreboard v" + getDescription().getVersion());
         scoreboardConfig = new ScoreboardConfig();
-        if (Bukkit.getPluginManager().isPluginEnabled("MVdWPlaceholderAPI")) {
-            logger.info("Encontrado MVdWPlaceholderAPI, hooking...");
-           //TODO useMVdW = true;
-        }
         new FactionsHookProcessor();
         new PlaceholderAPIProcessor();
+        new MaximvdwPlaceholderAPIProcessor();
         new ChatColorProcessor();
         logger.info("Iniciando o registrador de scoreboards...");
         r = new ScoreboardEventListener();

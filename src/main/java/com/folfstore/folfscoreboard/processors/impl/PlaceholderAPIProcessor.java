@@ -13,7 +13,7 @@ public class PlaceholderAPIProcessor extends ScoreboardProcessor {
 
     @Override
     public void executeProcessor(ScoreboardLinePool l, Player p) {
-        l.getRawList().forEach(scoreboardLine -> PlaceholderAPI.setPlaceholders((OfflinePlayer) p, scoreboardLine.getLine()));
+        l.getRawList().forEach(scoreboardLine -> scoreboardLine.setLine(PlaceholderAPI.setPlaceholders((OfflinePlayer) p, scoreboardLine.getLine())));
     }
 
     @Override
