@@ -5,7 +5,6 @@ import com.folfstore.folfscoreboard.ScoreboardLine;
 import com.folfstore.folfscoreboard.ScoreboardLinePool;
 import com.folfstore.folfscoreboard.processors.ScoreboardProcessor;
 import com.folfstore.folfscoreboard.processors.ScoreboardProcessorRegisterException;
-import com.massivecraft.factions.entity.FactionColl;
 import com.massivecraft.factions.entity.MPlayer;
 import org.bukkit.entity.Player;
 
@@ -18,11 +17,14 @@ public class FactionsHookProcessor extends ScoreboardProcessor {
     @Override
     public void executeProcessor(ScoreboardLinePool scoreboardLinePool, Player p) {
         MPlayer mplayer = MPlayer.get(p);
-        ScoreboardLinePool lineReplacePool = (mplayer == null || mplayer.getFaction() == null || mplayer.getFaction().equals(FactionColl.get().getNone())) ? getNoFacLines() : getFacLines();
         ScoreboardLinePool newLinePool = scoreboardLinePool.clone();
-        newLinePool.getRawList().forEach(scoreboardLine -> {
+        scoreboardLinePool.getRawList().forEach(scoreboardLine -> {
             if (Pattern.compile(getMatcher()).matcher(scoreboardLine.getLine()).matches()) {
-                lineReplacePool.getRawList().forEach(scoreboardLine1 -> newLinePool.insertBefore(scoreboardLine, scoreboardLine1));
+                if (mplayer == null || mplayer.hasFaction()) {
+                    getFacLines().getRawList().forEach(scoreboardLine1 -> newLinePool.insertBefore(scoreboardLine, scoreboardLine1));
+                } else {
+                    getNoFacLines().getRawList().forEach(scoreboardLine1 -> newLinePool.insertBefore(scoreboardLine, scoreboardLine1));
+                }
                 newLinePool.remove(scoreboardLine);
             }
         });
