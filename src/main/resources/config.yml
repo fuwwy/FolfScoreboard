@@ -4,20 +4,20 @@ updateEveryXSeconds: 1
 lines:
   - ""
   - "&fLevel: &a0"
-  - "&fPower: &a5/5"
+  - "&fPower: &a%factions_power%/%factions_powermax%"
   - ""
   - "#FactionsHook#"
   - ""
-  - "&fCoins: &a0"
-  - "&fCash: &a0.0"
+  - "&fCoins: &a%vault_eco_balance_formatted%"
+  - "&fCash: &a%playerpoints_points%"
   - ""
-  - "&echeckium.me"
+  - "&efolfstore.com"
 hooks:
   FactionsHook:
     nofaction:
       - "&7Sem Facção"
     hasfaction:
-      - "&eTeamOP"
-      - " &fOnline: &e1/15"
-      - " &fPoder: &e7/7"
-      - " &fTerras: &e1"
+      - "&e%factions_faction%"
+      - " &fOnline: &e%factions_onlinemembers%/%factions_allmembers%"
+      - " &fPoder: &e%factions_power%/%factions_powermax%"
+      - " &fTerras: &e%factions_claims%"
