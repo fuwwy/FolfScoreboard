@@ -4,7 +4,6 @@ import com.folfstore.folfscoreboard.commands.Score;
 import com.folfstore.folfscoreboard.config.ScoreboardConfig;
 import com.folfstore.folfscoreboard.processors.impl.ChatColorProcessor;
 import com.folfstore.folfscoreboard.processors.impl.FactionsHookProcessor;
-import com.folfstore.folfscoreboard.processors.impl.MaximvdwPlaceholderAPIProcessor;
 import com.folfstore.folfscoreboard.processors.impl.PlaceholderAPIProcessor;
 import com.folfstore.folfscoreboard.utils.Logger;
 import org.bukkit.Bukkit;
@@ -28,7 +27,6 @@ public class FolfScoreboard extends JavaPlugin {
         scoreboardConfig = new ScoreboardConfig();
         new FactionsHookProcessor();
         new PlaceholderAPIProcessor();
-        new MaximvdwPlaceholderAPIProcessor();
         new ChatColorProcessor();
         logger.info("Iniciando o registrador de scoreboards...");
         r = new ScoreboardEventListener();
