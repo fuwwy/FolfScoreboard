@@ -15,9 +15,7 @@ public class ChatColorProcessor extends ScoreboardProcessor {
 
     @Override
     public void executeProcessor(ScoreboardLine l, Player p) {
-        System.out.println(l.getLine());
         l.setLine(ChatColor.translateAlternateColorCodes('&', l.getLine()));
-        System.out.println(l.getLine());
     }
 
     @Override

@@ -7,6 +7,7 @@ import com.folfstore.folfscoreboard.processors.impl.ChatColorProcessor;
 import com.folfstore.folfscoreboard.processors.impl.FactionsHookProcessor;
 import com.folfstore.folfscoreboard.processors.impl.PlaceholderAPIProcessor;
 import com.folfstore.folfscoreboard.providers.DefaultScoreboardProvider;
+import com.folfstore.folfscoreboard.providers.RegionalScoreboardProvider;
 import com.folfstore.folfscoreboard.providers.ScoreboardProvider;
 import com.folfstore.folfscoreboard.utils.Logger;
 import org.bukkit.Bukkit;
@@ -30,7 +31,13 @@ public class FolfScoreboard extends JavaPlugin {
         logger.info("Ativando FolfScoreboard v" + getDescription().getVersion());
         initConfig();
         registerProcessors();
-        setScoreboardProvider(new DefaultScoreboardProvider());
+
+        if (Bukkit.getPluginManager().getPlugin("WorldGuard") != null) {
+            logger.info("WorldGuard encontrado, ativando scoreboards regionais...");
+            setScoreboardProvider(new RegionalScoreboardProvider(new DefaultScoreboardProvider()));
+        } else {
+            setScoreboardProvider(new DefaultScoreboardProvider());
+        }
         initRegisterer();
         getCommand("score").setExecutor(new Score());
         if (!Bukkit.getOnlinePlayers().isEmpty()) {

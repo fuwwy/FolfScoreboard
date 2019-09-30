@@ -28,6 +28,7 @@ public class ScoreboardLine {
         this.line = line;
         Iterator<String> it = Splitter.fixedLength(16).split(line).iterator();
         prefix = it.next();
+        suffix = null;
         if (it.hasNext()) {
             suffix = makeSuffix(it.next());
             if (suffix.length() > 16) suffix = suffix.substring(0, 16);

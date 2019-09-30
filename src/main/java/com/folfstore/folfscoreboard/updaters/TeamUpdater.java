@@ -45,7 +45,7 @@ public class TeamUpdater {
 
         ChatColorService service = new ChatColorService();
 
-        int maxIndex = scoreboardLines.get(scoreboardLines.size() - 1).getIndex();
+        int maxIndex = scoreboardLines.get(0).getIndex();
         for (int i = maxIndex + 1; i <= highestIndexCache.getOrDefault(p, 0); i++) {
             playerScoreboard.resetScores(service.get(i) + "" + ChatColor.RESET);
         }
