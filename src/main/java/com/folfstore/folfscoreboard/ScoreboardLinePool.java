@@ -32,7 +32,7 @@ public class ScoreboardLinePool {
 
     public ScoreboardLinePool clone() {
         ScoreboardLinePool newLinePool = new ScoreboardLinePool();
-        list.forEach(newLinePool::add);
+        list.forEach(scoreboardLine -> newLinePool.add(scoreboardLine.clone()));
         return newLinePool;
     }
 

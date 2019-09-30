@@ -1,5 +1,6 @@
 package com.folfstore.folfscoreboard.processors.impl;
 
+import com.folfstore.folfscoreboard.ScoreboardLine;
 import com.folfstore.folfscoreboard.ScoreboardLinePool;
 import com.folfstore.folfscoreboard.processors.ScoreboardProcessor;
 import me.clip.placeholderapi.PlaceholderAPI;
@@ -13,7 +14,12 @@ public class PlaceholderAPIProcessor extends ScoreboardProcessor {
 
     @Override
     public void executeProcessor(ScoreboardLinePool l, Player p) {
-        l.getRawList().forEach(scoreboardLine -> scoreboardLine.setLine(PlaceholderAPI.setPlaceholders((OfflinePlayer) p, scoreboardLine.getLine())));
+        l.getRawList().forEach(scoreboardLine -> executeProcessor(scoreboardLine, p));
+    }
+
+    @Override
+    public void executeProcessor(ScoreboardLine l, Player p) {
+        l.setLine(PlaceholderAPI.setPlaceholders((OfflinePlayer) p, l.getLine()));
     }
 
     @Override

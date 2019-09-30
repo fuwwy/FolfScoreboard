@@ -28,7 +28,7 @@ public class TeamUpdater {
 
         Scoreboard playerScoreboard = p.getScoreboard();
         Objective folfScoreboardObject = playerScoreboard.getObjective("FolfScoreboard");
-
+        String title = pluginInstance.getScoreboardProvider().getScoreboardTitleFor(p);
         if (folfScoreboardObject == null) {
             Future<Scoreboard> scoreboardFuture = Bukkit.getScheduler().callSyncMethod(FolfScoreboard.getPlugin(), () -> Bukkit.getScoreboardManager().getNewScoreboard());
             try {
@@ -38,8 +38,10 @@ public class TeamUpdater {
             }
             folfScoreboardObject = playerScoreboard.registerNewObjective("FolfScoreboard", "dummy");
             folfScoreboardObject.setDisplaySlot(DisplaySlot.SIDEBAR);
-            folfScoreboardObject.setDisplayName(pluginInstance.getScoreboardConfig().getTitle());
+            folfScoreboardObject.setDisplayName(title);
         }
+
+        if (folfScoreboardObject.getDisplayName() != title) folfScoreboardObject.setDisplayName(title);
 
         ChatColorService service = new ChatColorService();
 

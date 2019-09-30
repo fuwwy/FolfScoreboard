@@ -1,20 +1,11 @@
 package com.folfstore.folfscoreboard.config;
 
 import com.folfstore.folfscoreboard.FolfScoreboard;
-import com.folfstore.folfscoreboard.ScoreboardLine;
-import com.folfstore.folfscoreboard.ScoreboardLinePool;
 import com.folfstore.folfscoreboard.utils.Logger;
-import org.bukkit.ChatColor;
 
 import java.io.File;
 
-/**
- * Configuration file
- * This is trash and should probably be changed, maybe when FolfAPI becomes a thing
- */
 public class ScoreboardConfig {
-    private ScoreboardLinePool lines;
-    private String title;
     private boolean debug;
     private double updateSec;
 
@@ -28,9 +19,6 @@ public class ScoreboardConfig {
             FolfScoreboard.getPlugin().saveDefaultConfig();
             FolfScoreboard.getPlugin().reloadConfig();
         }
-        title = ChatColor.translateAlternateColorCodes('&', FolfScoreboard.getPlugin().getConfig().getString("title"));
-        lines = new ScoreboardLinePool();
-        FolfScoreboard.getPlugin().getConfig().getStringList("lines").stream().map(line -> new ScoreboardLine(line, lines.size())).forEach(scoreboardLine -> lines.add(scoreboardLine));
         debug = FolfScoreboard.getPlugin().getConfig().getBoolean("debug");
         updateSec = FolfScoreboard.getPlugin().getConfig().getDouble("updateEveryXSeconds");
     }
@@ -43,13 +31,6 @@ public class ScoreboardConfig {
         return updateSec;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public ScoreboardLinePool getLines() {
-        return lines;
-    }
 /*
     public List<String> getLinesFor(Player p) {
         ArrayList<ChatColor> unusedColors = new ArrayList<>(Arrays.asList(ChatColor.values()));

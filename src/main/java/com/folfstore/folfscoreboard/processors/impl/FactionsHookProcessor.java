@@ -34,6 +34,10 @@ public class FactionsHookProcessor extends ScoreboardProcessor {
     }
 
     @Override
+    public void executeProcessor(ScoreboardLine l, Player p) {
+    }
+
+    @Override
     public String getId() {
         return "FactionsProcessor";
     }

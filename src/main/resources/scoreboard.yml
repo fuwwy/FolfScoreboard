@@ -1,0 +1,12 @@
+title: "&c&lFolfScoreboard"
+lines:
+  - ""
+  - "&fLevel: &a0"
+  - "&fPower: &a%factions_power%/%factions_powermax%"
+  - ""
+  - "#FactionsHook#"
+  - ""
+  - "&fCoins: &a%vault_eco_balance_formatted%"
+  - "&fCash: &a%playerpoints_points%"
+  - ""
+  - "&efolfstore.com"

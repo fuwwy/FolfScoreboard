@@ -5,4 +5,6 @@ import org.bukkit.entity.Player;
 
 public interface ScoreboardProvider {
     ScoreboardLinePool getScoreboardFor(Player player);
+
+    String getScoreboardTitleFor(Player player);
 }

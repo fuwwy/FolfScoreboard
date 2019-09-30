@@ -1,23 +1,2 @@
 debug: false
-title: "&c&lFolfScoreboard"
 updateEveryXSeconds: 1
-lines:
-  - ""
-  - "&fLevel: &a0"
-  - "&fPower: &a%factions_power%/%factions_powermax%"
-  - ""
-  - "#FactionsHook#"
-  - ""
-  - "&fCoins: &a%vault_eco_balance_formatted%"
-  - "&fCash: &a%playerpoints_points%"
-  - ""
-  - "&efolfstore.com"
-hooks:
-  FactionsHook:
-    nofaction:
-      - "&7Sem Facção"
-    hasfaction:
-      - "&e%factions_faction%"
-      - " &fOnline: &e%factions_onlinemembers%/%factions_allmembers%"
-      - " &fPoder: &e%factions_power%/%factions_powermax%"
-      - " &fTerras: &e%factions_claims%"
