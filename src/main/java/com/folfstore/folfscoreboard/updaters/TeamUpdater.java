@@ -1,11 +1,11 @@
 package com.folfstore.folfscoreboard.updaters;
 
-import com.folfstore.folfscoreboard.ChatColorService;
 import com.folfstore.folfscoreboard.FolfScoreboard;
 import com.folfstore.folfscoreboard.ScoreboardLine;
 import com.folfstore.folfscoreboard.ScoreboardLinePool;
 import com.folfstore.folfscoreboard.processors.ScoreboardProcessor;
 import com.folfstore.folfscoreboard.processors.ScoreboardProcessorManager;
+import com.folfstore.folfscoreboard.services.ChatColorService;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -63,6 +63,7 @@ public class TeamUpdater {
             Team t = playerScoreboard.getTeam(teamName);
             if (t == null) t = playerScoreboard.registerNewTeam(teamName);
             t.addEntry(teamName);
+            System.out.println(scoreboardLine.getPrefix() + scoreboardLine.getSuffix());
             t.setPrefix(scoreboardLine.getPrefix());
             t.setSuffix(scoreboardLine.getSuffix());
             folfScoreboardObject.getScore(teamName).setScore(index);

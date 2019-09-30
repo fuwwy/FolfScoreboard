@@ -6,6 +6,7 @@ import com.folfstore.folfscoreboard.ScoreboardLinePool;
 import com.folfstore.folfscoreboard.processors.ScoreboardProcessor;
 import com.folfstore.folfscoreboard.processors.ScoreboardProcessorRegisterException;
 import com.massivecraft.factions.entity.MPlayer;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.regex.Pattern;
@@ -39,12 +40,13 @@ public class FactionsHookProcessor extends ScoreboardProcessor {
 
     @Override
     public boolean shouldRegister() {
+        if (Bukkit.getPluginManager().getPlugin("Factions") == null) return false;
         try {
             if (FolfScoreboard.getPlugin().getConfig().isConfigurationSection("hooks.FactionsHook")) {
                 noFacLines = new ScoreboardLinePool();
                 facLines = new ScoreboardLinePool();
-                FolfScoreboard.getPlugin().getConfig().getStringList("hooks.FactionsHook.nofaction").forEach(s -> noFacLines.add(new ScoreboardLine(s)));
-                FolfScoreboard.getPlugin().getConfig().getStringList("hooks.FactionsHook.hasfaction").forEach(s -> facLines.add(new ScoreboardLine(s)));
+                FolfScoreboard.getPlugin().getConfig().getStringList("hooks.FactionsHook.nofaction").forEach(s -> noFacLines.add(new ScoreboardLine(s, noFacLines.size())));
+                FolfScoreboard.getPlugin().getConfig().getStringList("hooks.FactionsHook.hasfaction").forEach(s -> facLines.add(new ScoreboardLine(s, facLines.size())));
             }
         } catch (Exception e) {
             new ScoreboardProcessorRegisterException("[FolfScoreboard] Exception thrown on attempting to register processor " + getId(), e).printStackTrace();

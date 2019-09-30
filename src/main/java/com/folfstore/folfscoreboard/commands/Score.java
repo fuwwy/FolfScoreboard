@@ -13,20 +13,21 @@ public class Score implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (commandSender instanceof Player && strings.length > 0) {
             if (strings[0].equalsIgnoreCase("toggle")) {
-                if (FolfScoreboard.getPlugin().getR().getOnlinePlayersScoreboard().containsKey(commandSender)) {
-                    FolfScoreboard.getPlugin().getR().getOnlinePlayersScoreboard().remove(commandSender);
+                if (FolfScoreboard.getPlugin().getScoreboardListener().getOnlinePlayersScoreboard().containsKey(commandSender)) {
+                    FolfScoreboard.getPlugin().getScoreboardListener().getOnlinePlayersScoreboard().remove(commandSender);
                     ((Player) commandSender).setScoreboard(Bukkit.getScoreboardManager().getMainScoreboard());
                 } else {
-                    FolfScoreboard.getPlugin().getR().getOnlinePlayersScoreboard().put((Player) commandSender, FolfScoreboard.getPlugin().getR().getScoreboardFor((Player) commandSender));
+                    FolfScoreboard.getPlugin().getScoreboardListener().getOnlinePlayersScoreboard().put((Player) commandSender, FolfScoreboard.getPlugin().getScoreboardListener().getScoreboardFor((Player) commandSender));
                 }
             } else if (strings[0].equalsIgnoreCase("off")) {
-                FolfScoreboard.getPlugin().getR().getOnlinePlayersScoreboard().remove(commandSender);
+                FolfScoreboard.getPlugin().getScoreboardListener().getOnlinePlayersScoreboard().remove(commandSender);
                 ((Player) commandSender).setScoreboard(Bukkit.getScoreboardManager().getMainScoreboard());
             } else if (strings[0].equalsIgnoreCase("on")) {
-                if (!FolfScoreboard.getPlugin().getR().getOnlinePlayersScoreboard().containsKey(commandSender))
-                    FolfScoreboard.getPlugin().getR().getOnlinePlayersScoreboard().put((Player) commandSender, FolfScoreboard.getPlugin().getR().getScoreboardFor((Player) commandSender));
+                if (!FolfScoreboard.getPlugin().getScoreboardListener().getOnlinePlayersScoreboard().containsKey(commandSender))
+                    FolfScoreboard.getPlugin().getScoreboardListener().getOnlinePlayersScoreboard().put((Player) commandSender, FolfScoreboard.getPlugin().getScoreboardListener().getScoreboardFor((Player) commandSender));
             }
         }
         return true;
     }
+
 }

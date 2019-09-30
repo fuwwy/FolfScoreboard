@@ -1,5 +1,6 @@
-package com.folfstore.folfscoreboard;
+package com.folfstore.folfscoreboard.listeners;
 
+import com.folfstore.folfscoreboard.FolfScoreboard;
 import com.folfstore.folfscoreboard.updaters.TeamUpdater;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -16,7 +17,7 @@ public class ScoreboardEventListener implements Listener {
 
     private HashMap<Player, Scoreboard> onlinePlayersScoreboard = new HashMap<>();
 
-    ScoreboardEventListener() {
+    public ScoreboardEventListener() {
         TeamUpdater updater = new TeamUpdater();
         new BukkitRunnable() {
             @Override
@@ -32,12 +33,16 @@ public class ScoreboardEventListener implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {
-        onlinePlayersScoreboard.put(e.getPlayer(), getScoreboardFor(e.getPlayer()));
+        initPlayer(e.getPlayer());
     }
 
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent e) {
         onlinePlayersScoreboard.remove(e.getPlayer());
+    }
+
+    public void initPlayer(Player player) {
+        onlinePlayersScoreboard.put(player, getScoreboardFor(player));
     }
 
     public Scoreboard getScoreboardFor(Player p) {

@@ -1,4 +1,4 @@
-package com.folfstore.folfscoreboard;
+package com.folfstore.folfscoreboard.services;
 
 import org.bukkit.ChatColor;
 
@@ -6,9 +6,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ChatColorService {
-    private List<ChatColor> colors = Arrays.asList(ChatColor.values());
+    private static List<ChatColor> colors = Arrays.asList(ChatColor.values());
 
-    public String get(int index) {
+    public static String get(int index) {
         String color = "";
         if (index > 15) {
             if (index < 32) {

@@ -2,6 +2,7 @@ package com.folfstore.folfscoreboard;
 
 import com.folfstore.folfscoreboard.commands.Score;
 import com.folfstore.folfscoreboard.config.ScoreboardConfig;
+import com.folfstore.folfscoreboard.listeners.ScoreboardEventListener;
 import com.folfstore.folfscoreboard.processors.impl.ChatColorProcessor;
 import com.folfstore.folfscoreboard.processors.impl.FactionsHookProcessor;
 import com.folfstore.folfscoreboard.processors.impl.PlaceholderAPIProcessor;
@@ -18,24 +19,41 @@ public class FolfScoreboard extends JavaPlugin {
     private Logger logger = new Logger();
     private static FolfScoreboard plugin;
     private ScoreboardConfig scoreboardConfig;
-    private ScoreboardEventListener r;
+    private ScoreboardEventListener scoreboardListener;
 
     @Override
     public void onEnable() {
         plugin = this;
         logger.info("Ativando FolfScoreboard v" + getDescription().getVersion());
+        initConfig();
+        registerProcessors();
+        initRegisterer();
+        getCommand("score").setExecutor(new Score());
+        if (!Bukkit.getOnlinePlayers().isEmpty()) {
+            Bukkit.getOnlinePlayers().forEach(player -> {
+                scoreboardListener.initPlayer(player);
+            });
+        }
+    }
+
+    private void initConfig() {
         scoreboardConfig = new ScoreboardConfig();
+    }
+
+    private void registerProcessors() {
         new FactionsHookProcessor();
         new PlaceholderAPIProcessor();
         new ChatColorProcessor();
-        logger.info("Iniciando o registrador de scoreboards...");
-        r = new ScoreboardEventListener();
-        Bukkit.getPluginManager().registerEvents(r, this);
-        getCommand("score").setExecutor(new Score());
     }
 
-    public ScoreboardEventListener getR() {
-        return r;
+    private void initRegisterer() {
+        logger.info("Iniciando o registrador de scoreboards...");
+        scoreboardListener = new ScoreboardEventListener();
+        Bukkit.getPluginManager().registerEvents(scoreboardListener, this);
+    }
+
+    public ScoreboardEventListener getScoreboardListener() {
+        return scoreboardListener;
     }
 
     public static FolfScoreboard getPlugin() {

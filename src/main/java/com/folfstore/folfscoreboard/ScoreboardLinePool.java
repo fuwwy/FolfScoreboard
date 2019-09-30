@@ -30,7 +30,6 @@ public class ScoreboardLinePool {
         updateIndexes();
   }
 
-    @SuppressWarnings("MethodDoesntCallSuperMethod")
     public ScoreboardLinePool clone() {
         ScoreboardLinePool newLinePool = new ScoreboardLinePool();
         list.forEach(newLinePool::add);
@@ -44,5 +43,9 @@ public class ScoreboardLinePool {
 
     public List<ScoreboardLine> getRawList() {
         return list;
-  }
+    }
+
+    public int size() {
+        return list.size();
+    }
 }

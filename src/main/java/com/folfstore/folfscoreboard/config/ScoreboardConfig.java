@@ -30,7 +30,7 @@ public class ScoreboardConfig {
         }
         title = ChatColor.translateAlternateColorCodes('&', FolfScoreboard.getPlugin().getConfig().getString("title"));
         lines = new ScoreboardLinePool();
-        FolfScoreboard.getPlugin().getConfig().getStringList("lines").stream().map(ScoreboardLine::new).forEach(scoreboardLine -> lines.add(scoreboardLine));
+        FolfScoreboard.getPlugin().getConfig().getStringList("lines").stream().map(line -> new ScoreboardLine(line, lines.size())).forEach(scoreboardLine -> lines.add(scoreboardLine));
         debug = FolfScoreboard.getPlugin().getConfig().getBoolean("debug");
         updateSec = FolfScoreboard.getPlugin().getConfig().getDouble("updateEveryXSeconds");
     }
