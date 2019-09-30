@@ -6,6 +6,8 @@ import com.folfstore.folfscoreboard.listeners.ScoreboardEventListener;
 import com.folfstore.folfscoreboard.processors.impl.ChatColorProcessor;
 import com.folfstore.folfscoreboard.processors.impl.FactionsHookProcessor;
 import com.folfstore.folfscoreboard.processors.impl.PlaceholderAPIProcessor;
+import com.folfstore.folfscoreboard.providers.DefaultScoreboardProvider;
+import com.folfstore.folfscoreboard.providers.ScoreboardProvider;
 import com.folfstore.folfscoreboard.utils.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -20,6 +22,7 @@ public class FolfScoreboard extends JavaPlugin {
     private static FolfScoreboard plugin;
     private ScoreboardConfig scoreboardConfig;
     private ScoreboardEventListener scoreboardListener;
+    private ScoreboardProvider scoreboardProvider;
 
     @Override
     public void onEnable() {
@@ -27,6 +30,7 @@ public class FolfScoreboard extends JavaPlugin {
         logger.info("Ativando FolfScoreboard v" + getDescription().getVersion());
         initConfig();
         registerProcessors();
+        setScoreboardProvider(new DefaultScoreboardProvider());
         initRegisterer();
         getCommand("score").setExecutor(new Score());
         if (!Bukkit.getOnlinePlayers().isEmpty()) {
@@ -62,5 +66,13 @@ public class FolfScoreboard extends JavaPlugin {
 
     public ScoreboardConfig getScoreboardConfig() {
         return scoreboardConfig;
+    }
+
+    public ScoreboardProvider getScoreboardProvider() {
+        return scoreboardProvider;
+    }
+
+    public void setScoreboardProvider(ScoreboardProvider scoreboardProvider) {
+        this.scoreboardProvider = scoreboardProvider;
     }
 }
