@@ -58,14 +58,16 @@ public class TeamUpdater {
 
             Team t = playerScoreboard.getTeam(teamName);
             if (t == null) t = playerScoreboard.registerNewTeam(teamName);
-            t.addEntry(teamName);
+            if (!t.hasEntry(teamName)) t.addEntry(teamName);
 
-            t.setPrefix(scoreboardLine.getPrefix());
-            t.setSuffix(scoreboardLine.getSuffix());
 
-            folfScoreboardObject.getScore(teamName).setScore(index);
+            if (!t.getPrefix().equals(scoreboardLine.getPrefix())) t.setPrefix(scoreboardLine.getPrefix());
+            if (!t.getSuffix().equals(scoreboardLine.getSuffix())) t.setSuffix(scoreboardLine.getSuffix());
+
+            if (!folfScoreboardObject.getScore(teamName).isScoreSet() || folfScoreboardObject.getScore(teamName).getScore() != index)
+                folfScoreboardObject.getScore(teamName).setScore(index);
         }
 
-        p.setScoreboard(playerScoreboard);
+        if (p.getScoreboard() != playerScoreboard) p.setScoreboard(playerScoreboard);
     }
 }
