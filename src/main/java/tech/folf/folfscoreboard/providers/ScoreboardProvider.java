@@ -1,7 +1,7 @@
-package com.folfstore.folfscoreboard.providers;
+package tech.folf.folfscoreboard.providers;
 
-import com.folfstore.folfscoreboard.ScoreboardLinePool;
 import org.bukkit.entity.Player;
+import tech.folf.folfscoreboard.ScoreboardLinePool;
 
 public interface ScoreboardProvider {
     ScoreboardLinePool getScoreboardFor(Player player);

@@ -1,14 +1,14 @@
-package com.folfstore.folfscoreboard.providers;
+package tech.folf.folfscoreboard.providers;
 
-import com.folfstore.folfscoreboard.FolfScoreboard;
-import com.folfstore.folfscoreboard.ScoreboardLine;
-import com.folfstore.folfscoreboard.ScoreboardLinePool;
-import com.folfstore.folfscoreboard.processors.ScoreboardProcessor;
-import com.folfstore.folfscoreboard.processors.ScoreboardProcessorManager;
-import com.folfstore.folfscoreboard.utils.Logger;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+import tech.folf.folfscoreboard.FolfScoreboard;
+import tech.folf.folfscoreboard.ScoreboardLine;
+import tech.folf.folfscoreboard.ScoreboardLinePool;
+import tech.folf.folfscoreboard.processors.ScoreboardProcessor;
+import tech.folf.folfscoreboard.processors.ScoreboardProcessorManager;
+import tech.folf.folfscoreboard.utils.Logger;
 
 import java.io.File;
 import java.io.IOException;

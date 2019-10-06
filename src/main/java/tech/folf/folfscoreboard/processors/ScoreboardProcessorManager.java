@@ -1,6 +1,6 @@
-package com.folfstore.folfscoreboard.processors;
+package tech.folf.folfscoreboard.processors;
 
-import com.folfstore.folfscoreboard.utils.Logger;
+import tech.folf.folfscoreboard.utils.Logger;
 
 import java.util.ArrayList;
 import java.util.List;

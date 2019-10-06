@@ -1,17 +1,17 @@
-package com.folfstore.folfscoreboard;
+package tech.folf.folfscoreboard;
 
-import com.folfstore.folfscoreboard.commands.Score;
-import com.folfstore.folfscoreboard.config.ScoreboardConfig;
-import com.folfstore.folfscoreboard.listeners.ScoreboardEventListener;
-import com.folfstore.folfscoreboard.processors.impl.ChatColorProcessor;
-import com.folfstore.folfscoreboard.processors.impl.FactionsHookProcessor;
-import com.folfstore.folfscoreboard.processors.impl.PlaceholderAPIProcessor;
-import com.folfstore.folfscoreboard.providers.DefaultScoreboardProvider;
-import com.folfstore.folfscoreboard.providers.RegionalScoreboardProvider;
-import com.folfstore.folfscoreboard.providers.ScoreboardProvider;
-import com.folfstore.folfscoreboard.utils.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
+import tech.folf.folfscoreboard.commands.Score;
+import tech.folf.folfscoreboard.config.ScoreboardConfig;
+import tech.folf.folfscoreboard.listeners.ScoreboardEventListener;
+import tech.folf.folfscoreboard.processors.impl.ChatColorProcessor;
+import tech.folf.folfscoreboard.processors.impl.FactionsHookProcessor;
+import tech.folf.folfscoreboard.processors.impl.PlaceholderAPIProcessor;
+import tech.folf.folfscoreboard.providers.DefaultScoreboardProvider;
+import tech.folf.folfscoreboard.providers.RegionalScoreboardProvider;
+import tech.folf.folfscoreboard.providers.ScoreboardProvider;
+import tech.folf.folfscoreboard.utils.Logger;
 
 /**
  * Old main class

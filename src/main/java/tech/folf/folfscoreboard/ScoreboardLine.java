@@ -1,8 +1,8 @@
-package com.folfstore.folfscoreboard;
+package tech.folf.folfscoreboard;
 
-import com.folfstore.folfscoreboard.services.ChatColorService;
 import com.google.common.base.Splitter;
 import org.bukkit.ChatColor;
+import tech.folf.folfscoreboard.services.ChatColorService;
 
 import java.util.Iterator;
 

@@ -1,9 +1,5 @@
-package com.folfstore.folfscoreboard.updaters;
+package tech.folf.folfscoreboard.updaters;
 
-import com.folfstore.folfscoreboard.FolfScoreboard;
-import com.folfstore.folfscoreboard.ScoreboardLine;
-import com.folfstore.folfscoreboard.ScoreboardLinePool;
-import com.folfstore.folfscoreboard.services.ChatColorService;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -11,6 +7,10 @@ import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
+import tech.folf.folfscoreboard.FolfScoreboard;
+import tech.folf.folfscoreboard.ScoreboardLine;
+import tech.folf.folfscoreboard.ScoreboardLinePool;
+import tech.folf.folfscoreboard.services.ChatColorService;
 
 import java.util.HashMap;
 import java.util.concurrent.ExecutionException;

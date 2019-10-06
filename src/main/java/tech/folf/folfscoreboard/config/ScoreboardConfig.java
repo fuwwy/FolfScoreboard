@@ -1,7 +1,7 @@
-package com.folfstore.folfscoreboard.config;
+package tech.folf.folfscoreboard.config;
 
-import com.folfstore.folfscoreboard.FolfScoreboard;
-import com.folfstore.folfscoreboard.utils.Logger;
+import tech.folf.folfscoreboard.FolfScoreboard;
+import tech.folf.folfscoreboard.utils.Logger;
 
 import java.io.File;
 

@@ -1,7 +1,7 @@
 name: FolfScoreboard
-version: 1.1.0
+version: 1.1.1
 author: Checkium
-main: com.folfstore.folfscoreboard.FolfScoreboard
+main: tech.folf.folfscoreboard.FolfScoreboard
 softdepend: [WorldGuard, Factions, PlaceholderAPI]
 commands:
   score:

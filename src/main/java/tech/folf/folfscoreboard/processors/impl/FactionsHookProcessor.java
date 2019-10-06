@@ -1,13 +1,13 @@
-package com.folfstore.folfscoreboard.processors.impl;
+package tech.folf.folfscoreboard.processors.impl;
 
-import com.folfstore.folfscoreboard.FolfScoreboard;
-import com.folfstore.folfscoreboard.ScoreboardLine;
-import com.folfstore.folfscoreboard.ScoreboardLinePool;
-import com.folfstore.folfscoreboard.processors.ScoreboardProcessor;
-import com.folfstore.folfscoreboard.processors.ScoreboardProcessorRegisterException;
 import com.massivecraft.factions.entity.MPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import tech.folf.folfscoreboard.FolfScoreboard;
+import tech.folf.folfscoreboard.ScoreboardLine;
+import tech.folf.folfscoreboard.ScoreboardLinePool;
+import tech.folf.folfscoreboard.processors.ScoreboardProcessor;
+import tech.folf.folfscoreboard.processors.ScoreboardProcessorRegisterException;
 
 import java.util.regex.Pattern;
 

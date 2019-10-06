@@ -1,11 +1,11 @@
-package com.folfstore.folfscoreboard.commands;
+package tech.folf.folfscoreboard.commands;
 
-import com.folfstore.folfscoreboard.FolfScoreboard;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import tech.folf.folfscoreboard.FolfScoreboard;
 
 public class Score implements CommandExecutor {
 

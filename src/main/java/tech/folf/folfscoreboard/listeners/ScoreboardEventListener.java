@@ -1,7 +1,5 @@
-package com.folfstore.folfscoreboard.listeners;
+package tech.folf.folfscoreboard.listeners;
 
-import com.folfstore.folfscoreboard.FolfScoreboard;
-import com.folfstore.folfscoreboard.updaters.TeamUpdater;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -10,6 +8,8 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.Scoreboard;
+import tech.folf.folfscoreboard.FolfScoreboard;
+import tech.folf.folfscoreboard.updaters.TeamUpdater;
 
 import java.util.HashMap;
 
