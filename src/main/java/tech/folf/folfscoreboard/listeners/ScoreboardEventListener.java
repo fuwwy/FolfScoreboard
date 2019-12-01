@@ -9,7 +9,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.Scoreboard;
 import tech.folf.folfscoreboard.FolfScoreboard;
-import tech.folf.folfscoreboard.updaters.TeamUpdater;
+import tech.folf.folfscoreboard.updaters.ScoreboardUpdater;
 
 import java.util.HashMap;
 
@@ -17,36 +17,33 @@ public class ScoreboardEventListener implements Listener {
 
     private HashMap<Player, Scoreboard> onlinePlayersScoreboard = new HashMap<>();
 
-    public ScoreboardEventListener() {
-        TeamUpdater updater = new TeamUpdater();
+    public ScoreboardEventListener(ScoreboardUpdater updater) {
+        long updateIntervalInTicks = (long) (FolfScoreboard.getPlugin().getScoreboardConfig().getUpdateInterval() * 20L);
+
         new BukkitRunnable() {
             @Override
             public void run() {
                 new HashMap<>(onlinePlayersScoreboard).forEach((player, scoreboard) -> updater.update(player));
             }
-        }.runTaskTimerAsynchronously(FolfScoreboard.getPlugin(), 0L, (long) (FolfScoreboard.getPlugin().getScoreboardConfig().getUpdateSec() * 20L));
-    }
-
-    public HashMap<Player, Scoreboard> getOnlinePlayersScoreboard() {
-        return onlinePlayersScoreboard;
+        }.runTaskTimerAsynchronously(FolfScoreboard.getPlugin(), 0L, updateIntervalInTicks);
     }
 
     @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent e) {
-        initPlayer(e.getPlayer());
+    public void onPlayerJoin(PlayerJoinEvent event) {
+        registerPlayer(event.getPlayer());
     }
 
     @EventHandler
-    public void onPlayerLeave(PlayerQuitEvent e) {
-        onlinePlayersScoreboard.remove(e.getPlayer());
+    public void onPlayerLeave(PlayerQuitEvent event) {
+        onlinePlayersScoreboard.remove(event.getPlayer());
     }
 
-    public void initPlayer(Player player) {
+    public void registerPlayer(Player player) {
         onlinePlayersScoreboard.put(player, getScoreboardFor(player));
     }
 
-    public Scoreboard getScoreboardFor(Player p) {
-        return onlinePlayersScoreboard.containsKey(p) ? onlinePlayersScoreboard.get(p) : Bukkit.getScoreboardManager().getNewScoreboard();
+    public Scoreboard getScoreboardFor(Player player) {
+        return onlinePlayersScoreboard.getOrDefault(player, Bukkit.getScoreboardManager().getNewScoreboard());
     }
 
 }

@@ -3,16 +3,22 @@ package tech.folf.folfscoreboard.utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
-/**
- * Do I really need to document this out?
- */
 public class Logger {
     private String id;
-    public Logger(String id) { this.id = id; }
-    public Logger() {}
+
+    public Logger(String id) {
+        this.id = id;
+    }
+
+    public Logger() {
+    }
 
     public void info(String message) {
-       send(message, Level.INFO);
+        send(message, Level.INFO);
+    }
+
+    public void error(String message) {
+        send(message, Level.ERROR);
     }
 
     private String getPrefix() {

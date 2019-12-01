@@ -22,16 +22,20 @@ public class ScoreboardLine {
     }
 
     public ScoreboardLine setLine(String line) {
-        if (0 == line.length() || line.equals(" ")) {
-            line = "" + ChatColorService.get(index);
-        }
         this.line = line;
+
+        if (0 == line.length() || line.equals(" ")) {
+            this.line = "" + ChatColorService.get(index);
+            return this;
+        }
+
         Iterator<String> it = Splitter.fixedLength(16).split(line).iterator();
         prefix = it.next();
-        suffix = null;
         if (it.hasNext()) {
             suffix = makeSuffix(it.next());
             if (suffix.length() > 16) suffix = suffix.substring(0, 16);
+        } else {
+            suffix = null;
         }
         return this;
     }

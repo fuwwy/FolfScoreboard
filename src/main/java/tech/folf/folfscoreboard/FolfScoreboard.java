@@ -2,7 +2,6 @@ package tech.folf.folfscoreboard;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-import tech.folf.folfscoreboard.commands.Score;
 import tech.folf.folfscoreboard.config.ScoreboardConfig;
 import tech.folf.folfscoreboard.listeners.ScoreboardEventListener;
 import tech.folf.folfscoreboard.processors.impl.ChatColorProcessor;
@@ -11,55 +10,74 @@ import tech.folf.folfscoreboard.processors.impl.PlaceholderAPIProcessor;
 import tech.folf.folfscoreboard.providers.DefaultScoreboardProvider;
 import tech.folf.folfscoreboard.providers.RegionalScoreboardProvider;
 import tech.folf.folfscoreboard.providers.ScoreboardProvider;
+import tech.folf.folfscoreboard.updaters.ScoreboardUpdater;
+import tech.folf.folfscoreboard.updaters.TeamUpdater;
 import tech.folf.folfscoreboard.utils.Logger;
 
-/**
- * Old main class
- * Needs heavy updating to new system, for ex. hooks vs replacers
- */
 public class FolfScoreboard extends JavaPlugin {
 
     private Logger logger = new Logger();
     private static FolfScoreboard plugin;
     private ScoreboardConfig scoreboardConfig;
     private ScoreboardEventListener scoreboardListener;
+
     private ScoreboardProvider scoreboardProvider;
+    private ScoreboardUpdater scoreboardUpdater;
 
     @Override
     public void onEnable() {
         plugin = this;
-        logger.info("Ativando FolfScoreboard v" + getDescription().getVersion());
-        initConfig();
-        registerProcessors();
+        logger.info("Enabling FolfScoreboard v" + getDescription().getVersion());
 
-        if (Bukkit.getPluginManager().getPlugin("WorldGuard") != null) {
-            logger.info("WorldGuard encontrado, ativando scoreboards regionais...");
-            setScoreboardProvider(new RegionalScoreboardProvider(new DefaultScoreboardProvider()));
-        } else {
-            setScoreboardProvider(new DefaultScoreboardProvider());
+        initialize();
+        // TODO getCommand("score").setExecutor(new Score());
+    }
+
+    private void initialize() {
+        initializeConfig();
+        registerScoreboardProcessors();
+        selectScoreboardProvider();
+        selectScoreboardUpdater();
+        registerUpdaterEvents();
+        addExistingPlayersOnReload();
+    }
+
+    private void selectScoreboardProvider() {
+        switch (scoreboardConfig.getProvider().toLowerCase()) {
+            case "regional":
+                this.scoreboardProvider = new RegionalScoreboardProvider(new DefaultScoreboardProvider());
+                break;
+            default:
+                this.scoreboardProvider = new DefaultScoreboardProvider();
         }
-        initRegisterer();
-        getCommand("score").setExecutor(new Score());
+    }
+
+    private void addExistingPlayersOnReload() {
         if (!Bukkit.getOnlinePlayers().isEmpty()) {
             Bukkit.getOnlinePlayers().forEach(player -> {
-                scoreboardListener.initPlayer(player);
+                scoreboardListener.registerPlayer(player);
             });
         }
     }
 
-    private void initConfig() {
+    private void selectScoreboardUpdater() {
+        // Currently there's only one updater so just set it
+        this.scoreboardUpdater = new TeamUpdater();
+    }
+
+    private void initializeConfig() {
         scoreboardConfig = new ScoreboardConfig();
     }
 
-    private void registerProcessors() {
+    private void registerScoreboardProcessors() {
         new FactionsHookProcessor();
         new PlaceholderAPIProcessor();
         new ChatColorProcessor();
     }
 
-    private void initRegisterer() {
-        logger.info("Iniciando o registrador de scoreboards...");
-        scoreboardListener = new ScoreboardEventListener();
+    private void registerUpdaterEvents() {
+        logger.info("Starting the scoreboard updater...");
+        scoreboardListener = new ScoreboardEventListener(scoreboardUpdater);
         Bukkit.getPluginManager().registerEvents(scoreboardListener, this);
     }
 
@@ -79,7 +97,4 @@ public class FolfScoreboard extends JavaPlugin {
         return scoreboardProvider;
     }
 
-    public void setScoreboardProvider(ScoreboardProvider scoreboardProvider) {
-        this.scoreboardProvider = scoreboardProvider;
-    }
 }

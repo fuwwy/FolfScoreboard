@@ -19,16 +19,17 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 
-public class TeamUpdater {
+public class TeamUpdater implements ScoreboardUpdater {
     private HashMap<Player, Integer> highestIndexCache = new HashMap<>();
-    public void update(Player p) {
+
+    public void update(Player player) {
         FolfScoreboard pluginInstance = FolfScoreboard.getPlugin();
 
-        ScoreboardLinePool scoreboardLines = pluginInstance.getScoreboardProvider().getScoreboardFor(p);
+        ScoreboardLinePool scoreboardLines = pluginInstance.getScoreboardProvider().getScoreboardFor(player);
 
-        Scoreboard playerScoreboard = p.getScoreboard();
+        Scoreboard playerScoreboard = player.getScoreboard();
         Objective folfScoreboardObject = playerScoreboard.getObjective("FolfScoreboard");
-        String title = pluginInstance.getScoreboardProvider().getScoreboardTitleFor(p);
+        String title = pluginInstance.getScoreboardProvider().getScoreboardTitleFor(player);
         if (folfScoreboardObject == null) {
             Future<Scoreboard> scoreboardFuture = Bukkit.getScheduler().callSyncMethod(FolfScoreboard.getPlugin(), () -> Bukkit.getScoreboardManager().getNewScoreboard());
             try {
@@ -46,10 +47,10 @@ public class TeamUpdater {
         ChatColorService service = new ChatColorService();
 
         int maxIndex = scoreboardLines.get(0).getIndex();
-        for (int i = maxIndex + 1; i <= highestIndexCache.getOrDefault(p, 0); i++) {
+        for (int i = maxIndex + 1; i <= highestIndexCache.getOrDefault(player, 0); i++) {
             playerScoreboard.resetScores(service.get(i) + "" + ChatColor.RESET);
         }
-        highestIndexCache.put(p, maxIndex);
+        highestIndexCache.put(player, maxIndex);
 
         for (ScoreboardLine scoreboardLine : scoreboardLines.toArray()) {
             int index = scoreboardLine.getIndex();
@@ -68,6 +69,6 @@ public class TeamUpdater {
                 folfScoreboardObject.getScore(teamName).setScore(index);
         }
 
-        if (p.getScoreboard() != playerScoreboard) p.setScoreboard(playerScoreboard);
+        if (player.getScoreboard() != playerScoreboard) player.setScoreboard(playerScoreboard);
     }
 }

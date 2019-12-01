@@ -5,6 +5,7 @@ import com.sk89q.worldguard.bukkit.RegionQuery;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.sk89q.worldguard.protection.ApplicableRegionSet;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -26,8 +27,14 @@ public class RegionalScoreboardProvider implements ScoreboardProvider {
 
     public RegionalScoreboardProvider(ScoreboardProvider defaultProvider) {
         Logger logger = new Logger("RegionalScoreboardProvider");
+
+        if (Bukkit.getPluginManager().getPlugin("WorldGuard") == null) {
+            logger.error("The RegionalScoreboardProvider requires WorldGuard to be installed.");
+            return;
+        }
+
         this.defaultProvider = defaultProvider;
-        logger.info("Carregando configuração...");
+        logger.info("Loading configuration...");
 
         File configDirectory = new File(FolfScoreboard.getPlugin().getDataFolder(), "regionalScoreboards");
         if (!configDirectory.exists()) {
@@ -47,7 +54,7 @@ public class RegionalScoreboardProvider implements ScoreboardProvider {
                     config.getStringList("lines").stream().map(line -> new ScoreboardLine(line, lines.size())).forEach(lines::add);
                     regionalLines.put(id, lines);
                 } catch (IOException | InvalidConfigurationException e) {
-                    logger.info("A config " + file.getName() + " é invalida: ");
+                    logger.info("The configuration " + file.getName() + " couldn't be loaded: ");
                     e.printStackTrace();
                     continue;
                 }

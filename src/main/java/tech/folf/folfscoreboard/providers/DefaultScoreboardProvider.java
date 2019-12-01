@@ -19,11 +19,11 @@ public class DefaultScoreboardProvider implements ScoreboardProvider {
 
     public DefaultScoreboardProvider() {
         Logger logger = new Logger("DefaultScoreboardProvider");
-        logger.info("Carregando configuração...");
+        logger.info("Loading configuration...");
 
         File configFile = new File(FolfScoreboard.getPlugin().getDataFolder(), "scoreboard.yml");
         if (!configFile.exists()) {
-            logger.info("Configuração não encontrada, criando novo arquivo...");
+            logger.info("Configuration not found, creating a new file...");
             FolfScoreboard.getPlugin().saveResource("scoreboard.yml", false);
         }
         YamlConfiguration config = new YamlConfiguration();
