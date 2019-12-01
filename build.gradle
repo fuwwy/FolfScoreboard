@@ -14,6 +14,7 @@ repositories {
     maven { url 'http://repo.mvdw-software.be/content/groups/public/'}
     maven { url 'http://repo.extendedclip.com/content/repositories/placeholderapi/'}
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    maven { url "https://maven.enginehub.org/repo/" }
 }
 
 dependencies {
@@ -24,4 +25,6 @@ dependencies {
     compileOnly files('dependencies/MambaFactions.jar')
     compileOnly files('dependencies/MambaMassiveCore.jar')
     compileOnly 'me.clip:placeholderapi:2.9.2'
+
+    compileOnly 'com.sk89q.worldguard:worldguard-legacy:6.2'
 }

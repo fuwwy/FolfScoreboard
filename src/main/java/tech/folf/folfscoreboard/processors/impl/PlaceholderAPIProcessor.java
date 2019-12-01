@@ -1,11 +1,11 @@
-package com.folfstore.folfscoreboard.processors.impl;
+package tech.folf.folfscoreboard.processors.impl;
 
-import com.folfstore.folfscoreboard.ScoreboardLine;
-import com.folfstore.folfscoreboard.ScoreboardLinePool;
-import com.folfstore.folfscoreboard.processors.ScoreboardProcessor;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
+import tech.folf.folfscoreboard.ScoreboardLine;
+import tech.folf.folfscoreboard.ScoreboardLinePool;
+import tech.folf.folfscoreboard.processors.ScoreboardProcessor;
 
 /**
  * Class responsible for replacing PAPI placeholders

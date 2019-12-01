@@ -1,9 +1,5 @@
-package com.folfstore.folfscoreboard.updaters;
+package tech.folf.folfscoreboard.updaters;
 
-import com.folfstore.folfscoreboard.FolfScoreboard;
-import com.folfstore.folfscoreboard.ScoreboardLine;
-import com.folfstore.folfscoreboard.ScoreboardLinePool;
-import com.folfstore.folfscoreboard.services.ChatColorService;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -11,6 +7,10 @@ import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
+import tech.folf.folfscoreboard.FolfScoreboard;
+import tech.folf.folfscoreboard.ScoreboardLine;
+import tech.folf.folfscoreboard.ScoreboardLinePool;
+import tech.folf.folfscoreboard.services.ChatColorService;
 
 import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
@@ -19,16 +19,17 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 
-public class TeamUpdater {
+public class TeamUpdater implements ScoreboardUpdater {
     private HashMap<Player, Integer> highestIndexCache = new HashMap<>();
-    public void update(Player p) {
+
+    public void update(Player player) {
         FolfScoreboard pluginInstance = FolfScoreboard.getPlugin();
 
-        ScoreboardLinePool scoreboardLines = pluginInstance.getScoreboardProvider().getScoreboardFor(p);
+        ScoreboardLinePool scoreboardLines = pluginInstance.getScoreboardProvider().getScoreboardFor(player);
 
-        Scoreboard playerScoreboard = p.getScoreboard();
+        Scoreboard playerScoreboard = player.getScoreboard();
         Objective folfScoreboardObject = playerScoreboard.getObjective("FolfScoreboard");
-        String title = pluginInstance.getScoreboardProvider().getScoreboardTitleFor(p);
+        String title = pluginInstance.getScoreboardProvider().getScoreboardTitleFor(player);
         if (folfScoreboardObject == null) {
             Future<Scoreboard> scoreboardFuture = Bukkit.getScheduler().callSyncMethod(FolfScoreboard.getPlugin(), () -> Bukkit.getScoreboardManager().getNewScoreboard());
             try {
@@ -45,11 +46,11 @@ public class TeamUpdater {
 
         ChatColorService service = new ChatColorService();
 
-        int maxIndex = scoreboardLines.get(scoreboardLines.size() - 1).getIndex();
-        for (int i = maxIndex + 1; i <= highestIndexCache.getOrDefault(p, 0); i++) {
+        int maxIndex = scoreboardLines.get(0).getIndex();
+        for (int i = maxIndex + 1; i <= highestIndexCache.getOrDefault(player, 0); i++) {
             playerScoreboard.resetScores(service.get(i) + "" + ChatColor.RESET);
         }
-        highestIndexCache.put(p, maxIndex);
+        highestIndexCache.put(player, maxIndex);
 
         for (ScoreboardLine scoreboardLine : scoreboardLines.toArray()) {
             int index = scoreboardLine.getIndex();
@@ -58,14 +59,16 @@ public class TeamUpdater {
 
             Team t = playerScoreboard.getTeam(teamName);
             if (t == null) t = playerScoreboard.registerNewTeam(teamName);
-            t.addEntry(teamName);
+            if (!t.hasEntry(teamName)) t.addEntry(teamName);
 
-            t.setPrefix(scoreboardLine.getPrefix());
-            t.setSuffix(scoreboardLine.getSuffix());
 
-            folfScoreboardObject.getScore(teamName).setScore(index);
+            if (!t.getPrefix().equals(scoreboardLine.getPrefix())) t.setPrefix(scoreboardLine.getPrefix());
+            if (!t.getSuffix().equals(scoreboardLine.getSuffix())) t.setSuffix(scoreboardLine.getSuffix());
+
+            if (!folfScoreboardObject.getScore(teamName).isScoreSet() || folfScoreboardObject.getScore(teamName).getScore() != index)
+                folfScoreboardObject.getScore(teamName).setScore(index);
         }
 
-        p.setScoreboard(playerScoreboard);
+        if (player.getScoreboard() != playerScoreboard) player.setScoreboard(playerScoreboard);
     }
 }

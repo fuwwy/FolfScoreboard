@@ -1,4 +1,4 @@
-package com.folfstore.folfscoreboard;
+package tech.folf.folfscoreboard;
 
 import java.util.ArrayList;
 import java.util.List;

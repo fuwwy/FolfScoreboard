@@ -1,8 +1,8 @@
-package com.folfstore.folfscoreboard;
+package tech.folf.folfscoreboard;
 
-import com.folfstore.folfscoreboard.services.ChatColorService;
 import com.google.common.base.Splitter;
 import org.bukkit.ChatColor;
+import tech.folf.folfscoreboard.services.ChatColorService;
 
 import java.util.Iterator;
 
@@ -22,15 +22,20 @@ public class ScoreboardLine {
     }
 
     public ScoreboardLine setLine(String line) {
-        if (0 == line.length() || line.equals(" ")) {
-            line = "" + ChatColorService.get(index);
-        }
         this.line = line;
+
+        if (0 == line.length() || line.equals(" ")) {
+            this.line = "" + ChatColorService.get(index);
+            return this;
+        }
+
         Iterator<String> it = Splitter.fixedLength(16).split(line).iterator();
         prefix = it.next();
         if (it.hasNext()) {
             suffix = makeSuffix(it.next());
             if (suffix.length() > 16) suffix = suffix.substring(0, 16);
+        } else {
+            suffix = null;
         }
         return this;
     }

@@ -1,4 +1,4 @@
-package com.folfstore.folfscoreboard.processors;
+package tech.folf.folfscoreboard.processors;
 
 import org.bukkit.Bukkit;
 

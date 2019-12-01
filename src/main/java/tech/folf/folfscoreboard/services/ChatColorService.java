@@ -1,4 +1,4 @@
-package com.folfstore.folfscoreboard.services;
+package tech.folf.folfscoreboard.services;
 
 import org.bukkit.ChatColor;
 

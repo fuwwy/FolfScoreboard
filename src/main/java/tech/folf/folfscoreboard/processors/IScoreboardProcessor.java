@@ -1,8 +1,8 @@
-package com.folfstore.folfscoreboard.processors;
+package tech.folf.folfscoreboard.processors;
 
-import com.folfstore.folfscoreboard.ScoreboardLine;
-import com.folfstore.folfscoreboard.ScoreboardLinePool;
 import org.bukkit.entity.Player;
+import tech.folf.folfscoreboard.ScoreboardLine;
+import tech.folf.folfscoreboard.ScoreboardLinePool;
 
 public interface IScoreboardProcessor {
     void executeProcessor(ScoreboardLinePool l, Player p);

@@ -1,14 +1,14 @@
-package com.folfstore.folfscoreboard.providers;
+package tech.folf.folfscoreboard.providers;
 
-import com.folfstore.folfscoreboard.FolfScoreboard;
-import com.folfstore.folfscoreboard.ScoreboardLine;
-import com.folfstore.folfscoreboard.ScoreboardLinePool;
-import com.folfstore.folfscoreboard.processors.ScoreboardProcessor;
-import com.folfstore.folfscoreboard.processors.ScoreboardProcessorManager;
-import com.folfstore.folfscoreboard.utils.Logger;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+import tech.folf.folfscoreboard.FolfScoreboard;
+import tech.folf.folfscoreboard.ScoreboardLine;
+import tech.folf.folfscoreboard.ScoreboardLinePool;
+import tech.folf.folfscoreboard.processors.ScoreboardProcessor;
+import tech.folf.folfscoreboard.processors.ScoreboardProcessorManager;
+import tech.folf.folfscoreboard.utils.Logger;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,11 +19,11 @@ public class DefaultScoreboardProvider implements ScoreboardProvider {
 
     public DefaultScoreboardProvider() {
         Logger logger = new Logger("DefaultScoreboardProvider");
-        logger.info("Carregando configuração...");
+        logger.info("Loading configuration...");
 
         File configFile = new File(FolfScoreboard.getPlugin().getDataFolder(), "scoreboard.yml");
         if (!configFile.exists()) {
-            logger.info("Configuração não encontrada, criando novo arquivo...");
+            logger.info("Configuration not found, creating a new file...");
             FolfScoreboard.getPlugin().saveResource("scoreboard.yml", false);
         }
         YamlConfiguration config = new YamlConfiguration();

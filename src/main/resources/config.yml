@@ -1,2 +1,3 @@
 debug: false
+provider: Regional
 updateEveryXSeconds: 1
